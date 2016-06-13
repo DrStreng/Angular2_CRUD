@@ -1,0 +1,36 @@
+<html>
+
+<head>
+
+  <title>Angular2 LekiApp</title>
+  <!-- 1. Load libraries -->
+  <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
+  <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+  <script src="node_modules/systemjs/dist/system.src.js"></script>
+  <script src="node_modules/rxjs/bundles/Rx.js"></script>
+  <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
+  <script src="node_modules/angular2/bundles/router.dev.js"></script>
+  <script src="node_modules/angular2/bundles/http.dev.js"></script>
+  <!-- <script src="https://code.angularjs.org/2.0.0-alpha.30/angular2.dev.js"></script> -->
+  <!-- 2. Configure SystemJS -->
+  <script>
+    System.config({
+      packages: {
+        compiled: {
+          format: 'register',
+          defaultExtension: 'js'
+        }
+      }
+    });
+    System.import('../compiled/boot')
+      .then(null, console.error.bind(console));
+  </script>
+</head>
+<base href="/">
+<!-- 3. Display the application -->
+
+<body>
+  <my-app>Loading...</my-app>
+</body>
+
+</html>

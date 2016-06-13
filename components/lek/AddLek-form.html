@@ -1,0 +1,64 @@
+<div class="menu">
+  <ul>
+    <li><a [routerLink]="['Home']">Home</a></li>
+    <li><a [routerLink]="['AddLek']">Dodaj Leki</a></li>
+    <li><a [routerLink]="['AddType']">Dodaj Typ</a></li>
+  </ul>
+</div>
+<div class="section">
+  <div class="wew_section">
+<h1>Dodaj Lekarstwo</h1>
+   <form (ngSubmit)="AddLek(name.value, typId.value, cost.value)">
+<table>
+  <tr>
+    <td>Name:</td>
+    <td><input type="text" #name placeholder="Podaj Nazwe..." required></td>
+    <td>
+      <div *ngIf="serverAnswer" class="error_message">
+          {{serverAnswer.error}}
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>Cost:</td>
+    <td><input type="number" #cost placeholder="Podaj Cene...[zł]" min="0.01" max="9999" step="0.01" size="4"   required></td>
+  </tr>
+  <tr><td>Typ:</td><td>
+  <select #typId required>
+    <option value="" disabled="disabled" selected="selected">
+      Wybierz Typ
+    </option>
+    <option *ngFor="#Typ of typs" value="{{Typ._id}}">
+      {{Typ.name}}
+    </option>
+  </select>
+</td></tr>
+</table>
+    <button type="submit">Dodaj Lekarstwo</button>
+  </form>
+
+<div id="test">
+  <table style="border-style:solid; border-width: 2px;">
+  <tr><th>Value</th><th>Manage</th></tr>
+    <tr *ngFor="#Lek of leks">
+    <form style="margin:0px"(ngSubmit)="EditLek(name.value,typId.value,cost.value,Lek._id)">
+        <th><input type="text" #name value='{{Lek.name}}' required></th>
+        <th>
+          <select #typId required>
+            <option value="{{Lek.typId?._id}}">
+                {{Lek.typId?.name}}
+            </option>
+            <option *ngFor="#Typ of typs" value="{{Typ._id}}" >
+              {{Typ.name}}
+            </option>
+          </select>
+        </th>
+        <th><input type="number" #cost value='{{Lek.cost}}' min="0.01" max="9999" step="0.01" size="4" required></th>
+        <th><button type="submit"(click)="editLek(Lek._id)">Edit</button></th>
+      </form>
+      <th><button type="submit"(click)="removeLek(Lek.name)">Delete</button></th>
+    </tr>
+  </table>
+</div>
+</div>
+</div>
